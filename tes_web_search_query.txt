@@ -1,0 +1,7 @@
+google font apis css
+flex gap css
+js back to previous page
+input camera js
+input camera html5
+jquery display image before upload
+jquery crop image

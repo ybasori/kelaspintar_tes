@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tes Logika</title>
+</head>
+
+<body>
+    <ol>
+        <li>
+
+            <form id="form_1">
+                <input type="text" id="angka">
+                <button type="submit">submit</button>
+            </form>
+            <p id="result_1"></p>
+        </li>
+        <li>
+            <form id="form_2">
+                <input type="text" id="paragraf">
+                <button type="submit">submit</button>
+            </form>
+            <p id="result_2"></p>
+        </li>
+        <li>
+            <form id="form_3">
+                <input type="text" id="password">
+                <button type="submit">submit</button>
+            </form>
+            <p id="result_3"></p>
+        </li>
+        <li>
+            <form id="form_4">
+                <p id="store"></p>
+                <input type="text" id="angka_4">
+                <button type="button" id="add">add</button>
+                <button type="submit">submit</button>
+            </form>
+            <p id="result_4"></p>
+        </li>
+        <li>
+            <form id="form_5">
+                <input type="text" id="angka_5">
+                <button type="submit">submit</button>
+            </form>
+            <p id="result_5"></p>
+        </li>
+    </ol>
+
+    <script>
+        /*==================== nomor 1 =====================*/
+        var angka = document.getElementById("angka");
+        var form_1 = document.getElementById("form_1");
+        var result_1 = document.getElementById("result_1");
+
+        form_1.addEventListener("submit", (e) => {
+            e.preventDefault();
+            if (isNaN(angka.value)) {
+                result_1.innerHTML = "Not a number";
+            }
+            else {
+                var numbers = [];
+                var angkaValue = parseInt(angka.value);
+                var j = 0;
+                for (var i = 0; i < angkaValue; i++) {
+                    j += 1;
+
+                    if (j % 3 == 0 || j % 7 == 0) {
+
+                        if (j % 3 == 0 && j % 7 == 0) {
+                            numbers = [...numbers, "Z"];
+                        }
+                        else {
+                            numbers = [...numbers, j];
+                        }
+
+                    } else {
+                        i -= 1;
+                    }
+                }
+
+                result_1.innerHTML = numbers.join(", ");
+            }
+        });
+
+        /*===================================================*/
+
+        /*==================== nomor 2 =====================*/
+
+
+        var paragraf = document.getElementById("paragraf");
+        var form_2 = document.getElementById("form_2");
+        var result_2 = document.getElementById("result_2");
+
+        form_2.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            var paragrafValue = paragraf.value;
+            var data = ['sang gajah', 'serigala', 'harimau'];
+            var resData = [];
+
+            for (var i = 0; i < paragrafValue.length; i++) {
+
+                for (var j = 0; j < data.length; j++) {
+
+                    var kata = data[j];
+
+                    if (paragrafValue.slice(i, i + kata.length).toLocaleLowerCase() == kata) {
+                        resData = [...resData, paragrafValue.slice(i, i + kata.length)];
+                    }
+
+                }
+
+            }
+
+            result_2.innerHTML = resData.join(" - ");
+        });
+
+        /*====================================================*/
+
+
+        /*==================== nomor 3 =====================*/
+        var password = document.getElementById("password");
+        var form_3 = document.getElementById("form_3");
+        var result_3 = document.getElementById("result_3");
+
+        form_3.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            if (password.value != null && password.value != undefined && password.value != "") {
+                var passwordVal = `${password.value}`;
+                var error = [];
+                if (!passwordVal.match(/^.{8,}$/g)) {
+                    error = [...error, "Kata sandi minimal 8 karakter"]
+                }
+                if (!passwordVal.match(/^.{0,32}$/g)) {
+                    error = [...error, "Kata sandi maksimal 32 karakter"]
+                }
+                if (!passwordVal.match(/^[^0-9]\S{0,}$/g)) {
+                    error = [...error, "Karakter awal tidak boleh angka"]
+                }
+                if (!passwordVal.match(/([A-Za-z0-9]*[^A-Za-z0-9]){2,}/g)) {
+                    error = [...error, "Harus memiliki 2 atau lebih simbol"];
+                }
+                if (!passwordVal.match(/[0-9]/g)) {
+                    error = [...error, "Harus memiliki angka"];
+                }
+                if (!passwordVal.match(/[A-Z]/g) || !passwordVal.match(/[a-z]/g)) {
+                    error = [...error, "Harus memiliki huruf kapital dan huruf kecil"];
+                }
+
+                var strip = passwordVal.replace(/([A-Za-z0-9]*[^A-Za-z0-9]){2,}/g, "-").replace(/[A-Za-z]/g, "-").split("-");
+
+                var errAngkaBerurutan = 0;
+                for (var i = 0; i < strip.length; i++) {
+
+                    if (strip[i] != "") {
+                        var arr = strip[i].split("");
+
+                        var orderedNumber = [];
+                        for (var j = 0; j < arr.length; j += 1) {
+                            if (j != 0) {
+                                if (parseInt(arr[j - 1]) + 1 == parseInt(arr[j])) {
+
+                                    orderedNumber = [...orderedNumber, parseInt(arr[j])];
+                                }
+                                else {
+                                    orderedNumber = [parseInt(arr[j])];
+                                }
+                            }
+                            else {
+                                orderedNumber = [parseInt(arr[j])];
+                            }
+                            if (orderedNumber.length == 3) {
+                                errAngkaBerurutan = +1;
+                                j = arr.length;
+                                i = strip.length;
+                            }
+                        }
+                    }
+                }
+                if (errAngkaBerurutan > 0) {
+                    error = [...error, "Tidak boleh memiliki 3 angka berurutan"];
+                }
+
+                if (error.length > 0) {
+                    result_3.innerHTML = `<ul><li>${error.join("</li><li>")}</li></ul>`;
+                }
+                else {
+                    result_3.innerHTML = "valid"
+                }
+            }
+            else {
+                result_3.innerHTML = "invalid"
+            }
+        });
+
+        /*====================================================*/
+
+
+        /*==================== nomor 4 =====================*/
+        var store = document.getElementById("store");
+        var angka_4 = document.getElementById("angka_4");
+        var add = document.getElementById("add");
+        var form_4 = document.getElementById("form_4");
+        var result_4 = document.getElementById("result_4");
+
+        add.addEventListener("click", () => {
+            if (angka_4.value != "" && !isNaN(angka_4.value)) {
+                var all_angka = store.innerHTML.replace(/\s/g, "").split(",");
+                all_angka = [...all_angka, parseInt(angka_4.value)].filter((item) => item !== "");
+                store.innerHTML = all_angka.join(", ")
+            }
+            angka_4.value = ""
+        });
+
+        form_4.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            var all_angka = store.innerHTML.replace(/\s/g, "").split(",");
+            if (all_angka != "") {
+                all_angka = [...all_angka, parseInt(angka_4.value)].filter((item) => !isNaN(item) && item !== "").map((item) => Number(item));
+
+                var all_angka_sorted = all_angka.sort((a, b) => a - b);
+                var angka_yg_hilang = [];
+
+                for (var i = all_angka_sorted[0]; i <= all_angka_sorted[all_angka_sorted.length - 1]; i++) {
+                    if (all_angka_sorted.findIndex((item) => item == i) < 0) {
+                        angka_yg_hilang = [...angka_yg_hilang, i]
+                    }
+                }
+
+                var angka_yg_hilang_sorted = angka_yg_hilang.sort((a, b) => a - b);
+                if (angka_yg_hilang_sorted.length > 0) {
+                    var angka_kecil = angka_yg_hilang_sorted[0];
+                    result_4.innerHTML = angka_kecil;
+                }
+            }
+        })
+        /*====================================================*/
+
+
+
+        /*==================== nomor 5 =====================*/
+        var angka_5 = document.getElementById("angka_5");
+        var form_5 = document.getElementById("form_5");
+        var result_5 = document.getElementById("result_5");
+        form_5.addEventListener("submit", (e) => {
+            e.preventDefault();
+            if (angka_5.value != "" && !isNaN(angka_5.value) && Number(angka_5.value) % 2 != 0) {
+
+                var html = "";
+                var angkaVal = Number(angka_5.value);
+                for (var i = 1; i <= angkaVal; i++) {
+                    for (var j = 0; j < angkaVal; j++) {
+
+                        if (i != 1 && i != angkaVal && j != 0 && j != angkaVal - 1) {
+                            if (angkaVal - i == j) {
+                                html = `${html}X`;
+                            }
+                            else {
+                                html = `${html}O`;
+                            }
+                        }
+                        else {
+                            html = `${html}X`;
+                        }
+                    }
+                    html = `${html}<br />`;
+                }
+
+                result_5.innerHTML = html;
+
+            }
+            if (Number(angka_5.value) % 2 == 0) {
+                result_5.innerHTML = "Harus bilangan ganjil";
+            }
+        });
+
+        /*====================================================*/
+    </script>
+</body>
+
+</html>

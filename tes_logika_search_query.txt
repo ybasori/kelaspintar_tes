@@ -1,0 +1,21 @@
+
+slice string javascript
+regex check if string has below characters
+regex check if string has below 5 characters
+regexr
+string more than regex
+regex string first character cannot be number
+regex detect special character
+string must contain more than one special character
+string must contain number regex
+string must contain capital letter small letter
+regex must contain number in order
+regex must contain numeric in order
+regex detect number in order
+detect any special character regex
+contain more than one digit regex
+string contain more than one digit regex
+string contain more than two digit regex
+regex detect number in increase order
+sort js
+delete NaN from an array
