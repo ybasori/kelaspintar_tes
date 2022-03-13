@@ -5,3 +5,24 @@ input camera js
 input camera html5
 jquery display image before upload
 jquery crop image
+jquery crop image before upload
+cropperjs
+position absolute
+position absolute center
+position absolute center css
+ajax formdata file upload
+formdata upload filereader
+js base64 to blob
+jquery base64 to blob
+filereader get extention
+upload image php ajax
+upload image php
+gitignore except
+html input browse file android
+html input browse file android single file
+html no image found
+date php
+get url history back js
+go back reload javascript
+remove element
+remove element jquery
