@@ -31,6 +31,7 @@ body {
   position: absolute;
   top: 0px;
   left: 0px;
+  box-shadow: 4px 4px 8px rgba(0, 41, 132, 0.25);
 }
 
 .navbar > .back-btn-wrapper {
@@ -66,6 +67,8 @@ body {
 
 .container-body > .container {
   padding: 16px 17px;
+  position: relative;
+  width: 100%;
 }
 
 .user-detail {
@@ -83,6 +86,7 @@ body {
   border-radius: 8px;
   box-shadow: 4px 4px 8px rgba(0, 41, 132, 0.25);
   cursor: pointer;
+  overflow: hidden;
 }
 
 .user-detail > .user-summary > .user-name {
@@ -167,4 +171,44 @@ body {
 #previewImg {
   object-fit: contain;
   width: 100%;
+}
+#previewImg-crop-photo {
+  object-fit: contain;
+  height: 100%;
+}
+
+.empty-display-photo-2nd {
+  width: 100%;
+  height: 100%;
+  background-color: #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 4px 4px 8px rgba(0, 41, 132, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.btn-crop-photo {
+  position: absolute;
+  bottom: 17px;
+  cursor: pointer;
+  border: 0px;
+  background-color: #002984;
+  width: calc(100% - 34px);
+  height: 40px;
+  color: #fff;
+  font-family: Nunito;
+  font-size: 12px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  box-shadow: 4px 4px 8px rgba(0, 41, 132, 0.25);
+}
+
+.photo-profile {
+  width: 100%;
+  object-fit: contain;
+}
+
+.h100p {
+  height: 100%;
 }

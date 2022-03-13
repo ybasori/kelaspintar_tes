@@ -14,7 +14,7 @@
     <div class="phone-container">
         <div class="navbar">
             <div class="back-btn-wrapper">
-                <img class="btn-back" onclick="history.back()" src="/assets/svg/mdi_arrow-left-circle.svg" />
+                <img class="btn-back" onclick="window.location=document.referrer;" src="/assets/svg/mdi_arrow-left-circle.svg" />
             </div>
             <div class="title-page-wrapper">
                 <h1>Profile</h1>
@@ -24,7 +24,7 @@
             <div class="container">
                 <div class="user-detail">
                     <div class="empty-photo" onclick="window.location.href='/change-photo'">
-                        <img src="/assets/svg/akar-icons_camera.svg" />
+                        <?= "<img src='/uploads/photo.jpg?" . date("s") . "' class='photo-profile' onerror=\"this.onerror=null; this.classList.remove('photo-profile'); this.src='/assets/svg/akar-icons_camera.svg'\" />"; ?>
                     </div>
                     <div class="user-summary">
                         <div class="user-name">John Doe</div>
